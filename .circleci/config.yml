@@ -8,7 +8,7 @@ jobs:
       - run:
           name: build
           command: >
-            docker build --build-arg COMMITISH=${COMMITISH} -t hypsonapos/visdom:${COMMITISH}
+            docker build --build-arg COMMITISH=${COMMITISH} -t hypsonapos/visdom:${COMMITISH}\
              -t hypsonapos/visdom:latest .
       - run:
           name: test
