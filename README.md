@@ -13,7 +13,7 @@ then add the suitable arg value in build time on this way:
 $ docker build --build-arg COMMITISH=<commitish> -t hypnosapos/visdom:<tag>
 ```
 
-> NOTE: Replace <commitish> and <tag> with appropriate values, both two may be the same
+> NOTE: Replace \<commitish\> and \<tag\> values with appropriate ones, both may be the same
 
 ## Play
 
@@ -30,5 +30,5 @@ You can use any of the following env variables ( `-e NAME=VALUE`):
 | `LOGGING_LEVEL`      | INFO              |
 
 
-Using default values server would be ready at http://localhost:8097
+Using default values, server would be ready at http://localhost:8097
 
