@@ -13,7 +13,7 @@ jobs:
       - run:
           name: test
           command: |
-            docker run -d hypsonapos/visdom:${COMMITISH}
+            docker run -d -p 8097:8097 hypsonapos/visdom:${COMMITISH}
             pip install -U pip
             pip install git+https://github.com/facebookresearch/visdom@${COMMITISH}#egg=visdom
             ./visdom_connection_test.py
