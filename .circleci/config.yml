@@ -1,4 +1,3 @@
-# NOTE: Activate 2 nodes in parallel on CircleCI
 version: 2
 jobs:
   build_publish:
