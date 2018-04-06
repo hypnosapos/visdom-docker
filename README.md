@@ -29,6 +29,26 @@ You can use any of the following env variables ( `-e NAME=VALUE`):
 | `ENV_PATH`           | $HOME/.visdom     |
 | `LOGGING_LEVEL`      | INFO              |
 
+In order to preserves data or sessions we recommend you attach a volume to persist them (obviously):
+
+```sh
+$ docker run -v <dest_path>:<env_path> -p 8097:8097 -e ENV_PATH=<env_path> hypnosapos/visdom:latest
+```
+
+> NOTE: Env variable argument for \<env_path\> is optional (-e ENV_PATH=<env_path>), in case this argument was not provided then the value for target directory on the container must be the default value <i>/root/.visdom/</i>
+> (e.g. -v /tmp/visdom/:/root/.visdom/)
 
 Using default values, server would be ready at http://localhost:8097
 
+## Testing visdom server
+
+The python script `visdom_connection_test.py` helps you to test visdom server connection,
+ enter command below to see more options or details:
+
+```sh
+./visdom_connection_test.py --help
+```
+
+I'm using it, for example, in my CI builds with [CircleCI](circleci/config.yml).
+
+Finally, and the most important thing, i hope it helps :satisfied: !!
