@@ -49,6 +49,6 @@ The python script `visdom_connection_test.py` helps you to test visdom server co
 ./visdom_connection_test.py --help
 ```
 
-I'm using it, for example, in my CI builds with [CircleCI](circleci/config.yml).
+I'm using it, for example, in my CI builds with [CircleCI](.circleci/config.yml).
 
 Finally, and the most important thing, i hope it helps :satisfied: !!
