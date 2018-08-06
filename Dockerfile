@@ -2,7 +2,7 @@ FROM python:3.6-jessie
 
 MAINTAINER Enrique Garcia <engapa@gmail.com>
 
-ARG COMMITISH=3e99bb0
+ARG COMMITISH=0b89c92
 
 ENV HOSTNAME='localhost'
 ENV PORT=8097
