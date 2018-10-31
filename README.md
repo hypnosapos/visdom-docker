@@ -1,15 +1,15 @@
-# Visdom
-[![Docker image](http://dockeri.co/image/hypnosapos/visdom)](https://hub.docker.com/r/hypnosapos/visdom)
+# Visdom [![Build status](https://circleci.com/gh/hypnosapos/visdom-docker/tree/master.svg?style=svg "Build status")](https://circleci.com/gh/hypnosapos/visdom-docker/tree/master)
 
+[![Docker image](http://dockeri.co/image/hypnosapos/visdom)](https://hub.docker.com/r/hypnosapos/visdom)
 
 If you want to run [visdom server](https://github.com/facebookresearch/visdom) by a docker container this is for you.
 
 ## Build your own image
 
-Not all versions of original project are released, so if you want to build a particular version (i mean "commit-ish") of sources
-then add the suitable arg value in build time on this way:
+Not all versions of original project are released, so if you want to build a particular version (I mean "commit-ish") of sources
+then add the COMMITISH build-arg when you're building the image:
 
-```sh
+```bash
 $ docker build --build-arg COMMITISH=<commitish> -t hypnosapos/visdom:<tag>
 ```
 
@@ -17,7 +17,7 @@ $ docker build --build-arg COMMITISH=<commitish> -t hypnosapos/visdom:<tag>
 
 ## Play
 
-```sh
+```bash
 $ docker run -p 8097:8097 hypnosapos/visdom:latest
 ```
 
@@ -31,7 +31,7 @@ You can use any of the following env variables ( `-e NAME=VALUE`):
 
 In order to preserves data or sessions we recommend you attach a volume to persist them (obviously):
 
-```sh
+```bash
 $ docker run -v <dest_path>:<env_path> -p 8097:8097 -e ENV_PATH=<env_path> hypnosapos/visdom:latest
 ```
 
@@ -45,7 +45,7 @@ Using default values, server would be ready at http://localhost:8097
 The python script `visdom_connection_test.py` helps you to test visdom server connection,
  enter command below to see more options or details:
 
-```sh
+```bash
 ./visdom_connection_test.py --help
 ```
 
