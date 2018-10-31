@@ -4,4 +4,8 @@
 !.circleci
 !.dockerignore
 
+__pycache__
+build
+*.egg
+
 
