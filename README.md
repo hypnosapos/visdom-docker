@@ -1,6 +1,7 @@
 # Visdom [![Build status](https://circleci.com/gh/hypnosapos/visdom-docker/tree/master.svg?style=svg "Build status")](https://circleci.com/gh/hypnosapos/visdom-docker/tree/master)
 
 [![Docker image](http://dockeri.co/image/hypnosapos/visdom)](https://hub.docker.com/r/hypnosapos/visdom)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhypnosapos%2Fvisdom-docker.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhypnosapos%2Fvisdom-docker?ref=badge_shield)
 
 If you want to run [visdom server](https://github.com/facebookresearch/visdom) by a docker container this is for you.
 
@@ -52,3 +53,7 @@ The python script `visdom_connection_test.py` helps you to test visdom server co
 I'm using it, for example, in my CI builds with [CircleCI](.circleci/config.yml).
 
 Finally, and the most important thing, i hope it helps :satisfied: !!
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhypnosapos%2Fvisdom-docker.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhypnosapos%2Fvisdom-docker?ref=badge_large)
