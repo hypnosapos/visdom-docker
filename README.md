@@ -1,4 +1,4 @@
-# Visdom [![Build status](https://circleci.com/gh/hypnosapos/visdom-docker/tree/master.svg?style=svg "Build status")](https://circleci.com/gh/hypnosapos/visdom-docker/tree/master)
+# Visdom [![Build status](https://circleci.com/gh/hypnosapos/visdom-docker/tree/master.svg?style=svg "Build status")](https://circleci.com/gh/hypnosapos/visdom-docker/tree/master)![We love open source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103 "We love open source")
 
 [![Docker image](http://dockeri.co/image/hypnosapos/visdom)](https://hub.docker.com/r/hypnosapos/visdom)
 
@@ -12,8 +12,14 @@ then add the COMMITISH build-arg when you're building the image:
 ```bash
 $ docker build --build-arg COMMITISH=<commitish> -t hypnosapos/visdom:<tag>
 ```
+> NOTE: Replace \<commitish\> and \<tag\> values with appropriate ones, both two may be the same.
 
-> NOTE: Replace \<commitish\> and \<tag\> values with appropriate ones, both may be the same
+Default version of python is **3.6** (build arg PY_VERSION) and distribution is **slim-stretch** (build arg DIST),
+ thus add your custom values if your want other base docker image, here an example:
+
+```bash
+$ docker build --build-arg COMMITISH=12345 --build-arg PY_VERSION=3.5 --build-arg DIST=slim -t hypnosapos/visdom:3.5-slim-12345
+```
 
 ## Play
 

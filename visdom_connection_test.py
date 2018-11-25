@@ -18,6 +18,9 @@ def main():
     parser.add_argument('--server', type=str, metavar='server',
                         default=os.environ.get('VISDOM_SERVER', 'localhost'),
                         help='The server bind ip. Default to VISDOM_SERVER env variable or localhost')
+    parser.add_argument('--retries', type=int, metavar='retries',
+                        default=10,
+                        help='Max number of retries')
 
     args = parser.parse_args()
 
@@ -25,10 +28,10 @@ def main():
 
     attempts = 0
     print("Trying connect to visdom server at: {}:{}".format(vis.server, vis.port))
-    while not vis.check_connection() and attempts <= 10:
+    while not vis.check_connection() and attempts <= args.retries:
         attempts += 1
-        time.sleep(2)
-        print("Retrying connection ... [{}/{}]".format(attempts, 10))
+        time.sleep(1)
+        print("Retrying connection ... [{}/{}]".format(attempts, args.retries))
     assert vis.check_connection(), "Unable to establish connection :-(("
     print("Connected!! :-)")
 
