@@ -8,12 +8,11 @@ jobs:
       - run:
           name: set env
           command: |
-            export COMMITISH=$(cat ~/repo/commitish)
-            echo $COMMITISH
+            COMMITISH=$(cat ~/repo/commitish)
+            echo 'export COMMITISH=$COMMITISH' >> $BASH_ENV
       - run:
           name: build
           command: >
-            echo $COMMITISH &&
             docker build \
              -t hypnosapos/visdom:$COMMITISH \
              -t hypnosapos/visdom:latest .
