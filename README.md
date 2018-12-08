@@ -7,54 +7,58 @@ If you want to run [visdom server](https://github.com/facebookresearch/visdom) b
 ## Build your own image
 
 Not all versions of original project are released, so if you want to build a particular version (I mean "commit-ish") of sources
-then add the COMMITISH build-arg when you're building the image:
+then update the **commitish** file:
 
 ```bash
-$ docker build --build-arg COMMITISH=<commitish> -t hypnosapos/visdom:<tag>
+$ docker build -t hypnosapos/visdom:$(cat commitish)
 ```
-> NOTE: Replace \<commitish\> and \<tag\> values with appropriate ones, both two may be the same.
 
 Default version of python is **3.6** (build arg PY_VERSION) and distribution is **slim-stretch** (build arg DIST),
  thus add your custom values if your want other base docker image, here an example:
 
 ```bash
-$ docker build --build-arg COMMITISH=12345 --build-arg PY_VERSION=3.5 --build-arg DIST=slim -t hypnosapos/visdom:3.5-slim-12345
+$ docker build --build-arg PY_VERSION=3.5 --build-arg DIST=slim -t hypnosapos/visdom:3.5-slim-$(cat commitish)
 ```
 
 ## Play
 
-```bash
-$ docker run -p 8097:8097 hypnosapos/visdom:latest
-```
-
-You can use any of the following env variables ( `-e NAME=VALUE`):
+Before running the container take a look at the following env variables  ( `-e NAME=VALUE`):
 
 |         Name         |        Default    |
 |----------------------|-------------------|
 | `PORT`               | 8097              |
 | `ENV_PATH`           | $HOME/.visdom     |
 | `LOGGING_LEVEL`      | INFO              |
+| `HOSTNAME`           | localhost         |
+| `BASE_URL`           | /                 |
+| `READONLY`           | True              |
+| `ENABLE_LOGIN`       | False             |
+| `FORCE_NEW_COOKIE`   | False             |
 
-In order to preserves data or sessions we recommend you attach a volume to persist them (obviously):
+Now we're ready to run the container
 
 ```bash
-$ docker run -v <dest_path>:<env_path> -p 8097:8097 -e ENV_PATH=<env_path> hypnosapos/visdom:latest
+$ docker run -it -p 8097:8097 [-e NAME=VALUE] hypnosapos/visdom:latest
 ```
 
-> NOTE: Env variable argument for \<env_path\> is optional (-e ENV_PATH=<env_path>), in case this argument was not provided then the value for target directory on the container must be the default value <i>/root/.visdom/</i>
-> (e.g. -v /tmp/visdom/:/root/.visdom/)
+In order to preserve data or sessions we recommend you attach a volume to persist them (obviously):
+
+```bash
+$ docker run -it -v <path>:<env_path> -p 8097:8097 -e ENV_PATH=<env_path> hypnosapos/visdom:latest
+```
 
 Using default values, server would be ready at http://localhost:8097
 
-## Testing visdom server
+## Trying visdom 
 
-The python script `visdom_connection_test.py` helps you to test visdom server connection,
- enter command below to see more options or details:
+To play with some examples we recommend you try:
 
 ```bash
-./visdom_connection_test.py --help
+docker run -d -p 8097:8097 --name visdom hypnosapos/visdom:latest
+docker exec -it visdom bash -c "python /root/visdom/example/demo.py"
 ```
 
-I'm using it, for example, in my CI builds with [CircleCI](.circleci/config.yml).
+And then check out examples at: http://localhost:8097
 
-Finally, and the most important thing, i hope it helps :satisfied: !!
+
+I hope it helps :satisfied: !!
