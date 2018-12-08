@@ -33,6 +33,6 @@ workflows:
   build:
     jobs:
     - build_test_publish:
-      filters:
-        branches:
-          only: master
+        filters:
+          branches:
+            only: master
