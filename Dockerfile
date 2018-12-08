@@ -1,6 +1,5 @@
 ARG PY_VERSION=3.6
 ARG DIST=slim-stretch
-ARG COMMITISH=f340284
 
 FROM python:${PY_VERSION}-${DIST}
 
@@ -8,6 +7,10 @@ RUN apt-get update && apt-get install git -y
 
 RUN git clone https://github.com/facebookresearch/visdom.git /root/visdom
 
+ADD ./commitish ./root/
+
+RUN cd /root/visdom && \
+    git checkout $(cat /root/commitish)
 
 FROM python:${PY_VERSION}-${DIST}
 
