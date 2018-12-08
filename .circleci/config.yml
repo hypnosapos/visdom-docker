@@ -8,9 +8,7 @@ jobs:
       - run:
           name: set env
           command: |
-            COMMITISH=$(cat ~/repo/commitish)
-            echo 'export COMMITISH=$COMMITISH' >> $BASH_ENV
-            cat $BASH_ENV
+            echo 'export COMMITISH=$(cat ~/repo/commitish)' >> $BASH_ENV
       - run:
           name: build
           command: >
