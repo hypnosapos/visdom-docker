@@ -13,7 +13,7 @@ jobs:
       - run:
           name: build
           command: >
-            echo $COMMITISH
+            echo $COMMITISH &&
             docker build \
              -t hypnosapos/visdom:$COMMITISH \
              -t hypnosapos/visdom:latest .
