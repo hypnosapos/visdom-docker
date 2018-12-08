@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install git -y
 
 RUN git clone https://github.com/facebookresearch/visdom.git /root/visdom
 
-ADD ./commitish ./root/
+ADD ./commitish /root/
+ADD ./visdom_connection_test.py /root/
 
 RUN cd /root/visdom && \
     git checkout $(cat /root/commitish)
@@ -20,6 +21,7 @@ LABEL io.k8s.description="Visdom server" \
       io.k8s.display-name="Visdom server"
 
 COPY --from=0 /root/visdom /root/visdom
+COPY --from=0 /root/visdom_connection_test.py /root/
 
 ENV HOSTNAME='localhost'
 ENV PORT=8097
@@ -31,8 +33,6 @@ ENV FORCE_NEW_COOKIE="False"
 ENV BASE_URL="/"
 
 RUN cd /root/visdom && pip install .
-
-ADD ./visdom_connection_test.py /root/
 
 EXPOSE $PORT
 
