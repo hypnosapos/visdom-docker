@@ -9,11 +9,13 @@ jobs:
           name: set env
           command: |
             export COMMITISH=$(cat ~/repo/commitish)
+            echo $COMMITISH
       - run:
           name: build
           command: >
+            echo $COMMITISH
             docker build \
-             -t hypnosapos/visdom:COMMITISH \
+             -t hypnosapos/visdom:$COMMITISH \
              -t hypnosapos/visdom:latest .
       - run:
           name: test
