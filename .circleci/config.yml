@@ -23,7 +23,7 @@ jobs:
             pip install git+https://github.com/facebookresearch/visdom@$COMMITISH#egg=visdom
             ./visdom_connection_test.py
       - run:
-          name: build
+          name: push
           command: |
             docker login -u=${DOCKER_USERNAME} -p=${DOCKER_PASSWORD}
             docker push hypnosapos/visdom:$COMMITISH
