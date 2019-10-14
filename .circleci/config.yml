@@ -18,10 +18,8 @@ jobs:
       - run:
           name: test
           command: |
-            docker run -d -p 8097:8097 hypnosapos/visdom:$COMMITISH
-            pip install -U pip
-            pip install git+https://github.com/facebookresearch/visdom@$COMMITISH#egg=visdom
-            ./visdom_connection_test.py
+            docker run -d -p 8097:8097 --name visdom-test hypnosapos/visdom:$COMMITISH
+            docker exec -it visdom-test bash -c "/root/visdom_connection_test.py"
       - run:
           name: push
           command: |
