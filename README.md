@@ -17,7 +17,7 @@ Default version of python is **3.6** (build arg PY_VERSION) and distribution is 
  thus add your custom values if your want other base docker image, here an example:
 
 ```bash
-$ docker build --build-arg PY_VERSION=3.5 --build-arg DIST=slim -t hypnosapos/visdom:3.5-slim-$(cat commitish)
+$ docker build --build-arg PY_VERSION=3.6 --build-arg DIST=slim -t hypnosapos/visdom:3.6-slim-$(cat commitish)
 ```
 
 ## Play
