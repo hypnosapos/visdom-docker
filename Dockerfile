@@ -1,5 +1,5 @@
-ARG PY_VERSION=3.6
-ARG DIST=slim-stretch
+ARG PY_VERSION=3.9
+ARG DIST=slim
 
 FROM python:${PY_VERSION}-${DIST}
 
