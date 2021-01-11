@@ -10,14 +10,14 @@ Not all versions of original project are released, so if you want to build a par
 then update the **commitish** file:
 
 ```bash
-$ docker build -t hypnosapos/visdom:$(cat commitish)
+$ docker build -t hypnosapos/visdom:$(cat commitish) .
 ```
 
-Default version of python is **3.6** (build arg PY_VERSION) and distribution is **slim-stretch** (build arg DIST),
+Default version of python is **3.9** (build arg PY_VERSION) and distribution is **slim** (build arg DIST),
  thus add your custom values if your want other base docker image, here an example:
 
 ```bash
-$ docker build --build-arg PY_VERSION=3.6 --build-arg DIST=slim -t hypnosapos/visdom:3.6-slim-$(cat commitish)
+$ docker build --build-arg PY_VERSION=3.9 --build-arg DIST=slim -t hypnosapos/visdom:3.9-slim-$(cat commitish) .
 ```
 
 ## Play
@@ -38,23 +38,22 @@ Before running the container take a look at the following env variables  ( `-e N
 Now we're ready to run the container
 
 ```bash
-$ docker run -it -p 8097:8097 [-e NAME=VALUE] hypnosapos/visdom:latest
+$ docker run -it -p 8097:8097 [-e NAME=VALUE] --name visdom hypnosapos/visdom:$(cat commitish)
 ```
 
 In order to preserve data or sessions we recommend you attach a volume to persist them (obviously):
 
 ```bash
-$ docker run -it -v <path>:<env_path> -p 8097:8097 -e ENV_PATH=<env_path> hypnosapos/visdom:latest
+$ docker run -it -v <path>:<env_path> -p 8097:8097 -e ENV_PATH=<env_path> --name visdom hypnosapos/visdom:$(cat commitish)
 ```
 
-Using default values, server would be ready at http://localhost:8097
+Using default values server would be ready at http://localhost:8097
 
 ## Trying visdom 
 
-To play with some examples we recommend you try:
+To play with some examples once our docker container is running we recommend you try:
 
 ```bash
-docker run -d -p 8097:8097 --name visdom hypnosapos/visdom:latest
 docker exec -it visdom bash -c "python /root/visdom/example/demo.py"
 ```
 
