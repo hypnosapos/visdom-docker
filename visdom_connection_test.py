@@ -19,7 +19,7 @@ def main():
                         default=os.environ.get('VISDOM_SERVER', 'localhost'),
                         help='The server bind ip. Default to VISDOM_SERVER env variable or localhost')
     parser.add_argument('--retries', type=int, metavar='retries',
-                        default=10,
+                        default=3,
                         help='Max number of retries')
 
     args = parser.parse_args()

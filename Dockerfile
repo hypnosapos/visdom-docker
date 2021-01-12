@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install git -y
 RUN git clone https://github.com/facebookresearch/visdom.git /root/visdom
 
 ADD ./commitish /root/
-ADD ./visdom_connection_test.py /root/
 
 RUN cd /root/visdom && \
     git checkout $(cat /root/commitish)
@@ -21,7 +20,10 @@ LABEL io.k8s.description="Visdom server" \
       io.k8s.display-name="Visdom server"
 
 COPY --from=0 /root/visdom /root/visdom
-COPY --from=0 /root/visdom_connection_test.py /root/
+
+ADD ./visdom_connection_test.py /root/
+
+RUN chmod a+x /root/visdom_connection_test.py
 
 ENV HOSTNAME='localhost'
 ENV PORT=8097
@@ -46,3 +48,4 @@ CMD python -m visdom.server \
     `if [ "x$FORCE_NEW_COOKIE" = "xTrue" ];then echo "-force_new_cookie";fi` \
     `if [ "x$ENABLE_LOGIN" = "xTrue" ];then echo "-enable_login";fi`
 
+HEALTHCHECK --interval=10s --retries=10 CMD /root/visdom_connection_test.py
