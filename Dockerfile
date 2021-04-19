@@ -5,7 +5,7 @@ FROM python:${PY_VERSION}-${DIST}
 
 RUN apt-get update && apt-get install git -y
 
-RUN git clone https://github.com/facebookresearch/visdom.git /root/visdom
+RUN git clone https://github.com/fossasia/visdom.git /root/visdom
 
 ADD ./commitish /root/
 
